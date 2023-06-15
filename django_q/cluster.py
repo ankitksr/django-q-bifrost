@@ -21,7 +21,9 @@ try:
     apps.check_apps_ready()
 except core.exceptions.AppRegistryNotReady:
     import django
-
+    import configurations
+    
+    configurations.setup()
     django.setup()
 
 from django.conf import settings
