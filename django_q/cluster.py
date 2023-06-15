@@ -20,8 +20,14 @@ from django.apps.registry import apps
 try:
     apps.check_apps_ready()
 except core.exceptions.AppRegistryNotReady:
-    from configurations import importer
-    importer.install()
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", os.getenv("DJANGO_SETTINGS_MODULE"))
+    os.environ.setdefault("DJANGO_CONFIGURATION", os.getenv("DJANGO_CONFIGURATION"))
+
+    import configurations
+    configurations.setup()
+    
+    # from configurations import importer
+    # importer.install()
 
     import django
     django.setup()
