@@ -17,17 +17,21 @@ import arrow
 from django import core, db
 from django.apps.registry import apps
 
+import multiprocessing
+
+multiprocessing.set_start_method("fork", force=True)
+
 try:
     apps.check_apps_ready()
 except core.exceptions.AppRegistryNotReady:
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", os.getenv("DJANGO_SETTINGS_MODULE"))
-    os.environ.setdefault("DJANGO_CONFIGURATION", os.getenv("DJANGO_CONFIGURATION"))
+    # os.environ.setdefault("DJANGO_SETTINGS_MODULE", os.getenv("DJANGO_SETTINGS_MODULE"))
+    # os.environ.setdefault("DJANGO_CONFIGURATION", os.getenv("DJANGO_CONFIGURATION"))
 
     # import configurations
     # configurations.setup()
     
-    from configurations import importer
-    importer.install()
+    # from configurations import importer
+    # importer.install()
 
     import django
     django.setup()
