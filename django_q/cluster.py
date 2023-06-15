@@ -23,11 +23,11 @@ except core.exceptions.AppRegistryNotReady:
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", os.getenv("DJANGO_SETTINGS_MODULE"))
     os.environ.setdefault("DJANGO_CONFIGURATION", os.getenv("DJANGO_CONFIGURATION"))
 
-    import configurations
-    configurations.setup()
+    # import configurations
+    # configurations.setup()
     
-    # from configurations import importer
-    # importer.install()
+    from configurations import importer
+    importer.install()
 
     import django
     django.setup()
